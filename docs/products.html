@@ -53,31 +53,15 @@
       color: black;
       font-weight: bold;
     }
-    .toggle-conventional-btn {
-      cursor: pointer;
-      margin-left: 10px;
-      font-size: 0.9em; /* Smaller icon */
-      color: #3fcf8e; /* Theme color */
-    }
-    .toggle-conventional-btn:hover {
-      color: #59f3b7; /* Lighter theme color on hover */
-    }
   </style>
 </head>
 <body id="static">
-  <div id="page-loader-overlay" class="page-loader-overlay">
-      <div class="loader-spinner"></div>
-  </div>
   <main class="main-bg">
     <div class="scroll-wrapper">
       <div class="content justify-content-md-center justify-content-start">
         <div class="table-container mt-5">
           <div class="table-item">
-            <div class="heading">Tipos de Producto
-              <span id="toggleConventionalOption" class="toggle-conventional-btn" title="Mostrar/Ocultar opción Convencional">
-                <i class="fas fa-eye-slash"></i>
-              </span>
-            </div>
+            <div class="heading">Tipos de Producto</div>
             <div class="accordion style-1" id="accordionExample">
               <div class="list-items">
                 <h2 class="accordion-header">
@@ -143,9 +127,6 @@
   <script>
     let tipoSeleccionado = "BIOBOLSA BRIDA";  // valor por defecto
     let imagenSeleccionada = "assets/BOLSA-BRIDA (1).png";
-    let isConventionalOptionVisible = false;
-    const conventionalOptionValue = "PE/TPS";
-    const conventionalOptionText = "Convencionales (Muestra Control)";
 
     // Mapeo a valores esperados por el modelo
     const mapaTipos = {
@@ -173,44 +154,6 @@
       });
     });
 
-    const materialidadSelect = document.getElementById("input-materialidad");
-    const toggleBtn = document.getElementById("toggleConventionalOption");
-    const toggleIcon = toggleBtn.querySelector("i");
-
-    function updateConventionalOptionVisibility() {
-      const existingOption = materialidadSelect.querySelector(`option[value="${conventionalOptionValue}"]`);
-      if (isConventionalOptionVisible) {
-        if (!existingOption) {
-          const option = document.createElement("option");
-          option.value = conventionalOptionValue;
-          option.textContent = conventionalOptionText;
-          materialidadSelect.appendChild(option);
-        }
-        toggleIcon.classList.remove("fa-eye-slash");
-        toggleIcon.classList.add("fa-eye");
-        toggleBtn.title = "Ocultar opción Convencional";
-      } else {
-        if (existingOption) {
-          // If the conventional option was selected, reset to default ("Bio E-10") before removing
-          if (materialidadSelect.value === conventionalOptionValue) {
-            materialidadSelect.value = "Bio E-10"; 
-          }
-          existingOption.remove();
-        }
-        toggleIcon.classList.remove("fa-eye");
-        toggleIcon.classList.add("fa-eye-slash");
-        toggleBtn.title = "Mostrar opción Convencional";
-      }
-    }
-
-    toggleBtn.addEventListener("click", () => {
-      isConventionalOptionVisible = !isConventionalOptionVisible;
-      updateConventionalOptionVisibility();
-    });
-
-    // Initialize visibility on page load (it's hidden by default as per isConventionalOptionVisible = false)
-    updateConventionalOptionVisibility(); 
-
     function guardarDatos() {
       const tipoFinal = mapaTipos[tipoSeleccionado] || "Camiseta";
       const material = document.getElementById("input-materialidad").value;
@@ -231,6 +174,5 @@
       window.location.href = "results.html";
     }
   </script>
-  <script src="js/loader.js"></script>
 </body>
 </html>
