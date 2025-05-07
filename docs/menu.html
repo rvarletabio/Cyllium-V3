@@ -23,6 +23,10 @@
             position: relative; /* Needed for the mask */
         }
 
+        body { /* Added zoom here */
+            zoom: 80%;
+        }
+
         body#static::before { /* This creates the mask effect from welcome.html */
             content: "";
             position: absolute;
