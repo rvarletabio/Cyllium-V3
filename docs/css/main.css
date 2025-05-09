@@ -12,10 +12,12 @@ body {
 }
 .main-bg {
   background-color: rgb(28 26 28);
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px 0;
+  overflow-y: auto;
 }
 
 .logo {
@@ -224,8 +226,11 @@ body {
 
 .table-item {
   border: 2px solid var(--green);
-  overflow: hidden;
+  overflow: visible;
   border-radius: 6px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .table-item .heading {
@@ -260,14 +265,13 @@ body {
 }
 
 .content-items {
+  padding: 0 20px;
+  position: relative;
+  border-radius: 6px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  min-width: 250px;
-  height: 100%;
-  min-height: 280px;
-  background-color: #154442;
 }
 
 .content-items .accordion-item {
@@ -283,9 +287,11 @@ body {
 }
 
 .item-img {
-  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: none;
   object-fit: contain;
-  max-width: 150px;
+  margin: 15px 0;
 }
 
 .calculate-btn {
@@ -741,13 +747,13 @@ body {
 }
 
 .circle-front {
-  opacity: 0; /* Set initial opacity to 0 */
-  animation: fade-in 0.8s cubic-bezier(0.55, 0, 1, 0.45) forwards; /* Set infinite to continue the animation indefinitely */
+  opacity: 0;
+  animation: fade-in 0.8s cubic-bezier(0.55, 0, 1, 0.45) forwards;
 }
 
 .circle-rear {
-  opacity: 0; /* Set initial opacity to 0 */
-  animation: rear-grow 1s infinite, fade-out 1s 1s infinite; /* Set infinite to continue the animation indefinitely */
+  opacity: 0;
+  animation: rear-grow 1s infinite, fade-out 1s 1s infinite;
 }
 
 @keyframes rear-grow {
@@ -796,13 +802,60 @@ body {
   .list-items {
     width: 100%;
     min-width: 50%;
+    padding: 0 10px;
   }
   .mobile-frame .content {
     max-width: 100%;
     width: 100%;
+    height: auto;
+    min-height: 0;
   }
   .mobile-frame {
     padding: 0;
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .form-control {
+    padding: 12px;
+    font-size: 16px;
+  }
+  
+  .table-item .heading {
+    font-size: 12px;
+    padding: 8px;
+  }
+  
+  .calculate-btn {
+    width: 100%;
+    max-width: none;
+    padding: 12px;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 350px) {
+  .form-control {
+    padding: 10px 8px;
+  }
+  
+  .content-items {
+    padding: 0 5px;
+  }
+  
+  .item-img {
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 768px) {
+  .scroll-wrapper {
+    padding: 15px;
+    max-width: 600px;
+  }
+  
+  .mobile-frame {
+    padding: 10px;
   }
 }
 
@@ -813,16 +866,16 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(41, 45, 62, 0.85); /* Using a color similar to existing backgrounds */
-    display: none; /* Hidden by default */
+    background-color: rgba(41, 45, 62, 0.85);
+    display: none;
     justify-content: center;
     align-items: center;
-    z-index: 10000; /* Ensure it's on top */
+    z-index: 10000;
 }
 
 .loader-spinner {
-    border: 8px solid #4a4e5a; /* A slightly lighter shade from your disabled buttons */
-    border-top: 8px solid #3fcf8e; /* Your theme's green color */
+    border: 8px solid #4a4e5a;
+    border-top: 8px solid #3fcf8e;
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -834,3 +887,12 @@ body {
     100% { transform: rotate(360deg); }
 }
 /* End Loader Styles */
+
+.scroll-wrapper {
+  padding: 20px;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
